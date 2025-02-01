@@ -1,5 +1,6 @@
 package com.example.javafxapp;
 
+import com.example.javafxapp.task.TaskManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +17,7 @@ public class App extends Application {
 
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {

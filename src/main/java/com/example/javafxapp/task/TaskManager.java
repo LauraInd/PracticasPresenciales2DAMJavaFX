@@ -1,6 +1,56 @@
-public class TaskManager {
+package com.example.javafxapp.task;
+
+import com.example.javafxapp.domain.Author;
+import javafx.concurrent.Task;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TaskManager extends Task<List<Author>> {
+
+    @Override
+    protected List<Author> call() throws Exception {
+        List<Author> authors = new ArrayList<>();
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8080/authors"))
+                    .GET()
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() == 200) {
+                JSONArray jsonArray = new JSONArray(response.body());
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    Author author = new Author(
+                    jsonObject.getInt("id"),
+                    jsonObject.getString("name"),
+                    jsonObject.getString("surname"),
+                    LocalDate.parse(jsonObject.getString("birthdate"), DateTimeFormatter.ISO_DATE),
+                    jsonObject.getBoolean("active"));
+
+                    authors.add(author);
+                }
 
 
-
-
+            } else {
+                updateMessage("Error " + response.statusCode() + " " + response.body());
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return authors;
+    }
 }
