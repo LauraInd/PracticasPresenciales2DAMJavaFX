@@ -7,7 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+
+import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -27,6 +31,8 @@ public class Controller {
     private TableColumn<Author, LocalDate> columnBirthdate;
     @FXML
     private TableColumn<Author, Boolean> columnActive;
+    @FXML
+    private ImageView imageV;
 
 
     private List<Author> authors;
@@ -42,6 +48,7 @@ public class Controller {
         taskManager.setOnSucceeded(event -> {
             authors = taskManager.getValue();
             showAuthors();
+            showImage();
         });
         new Thread(taskManager).start();
 
@@ -63,7 +70,14 @@ public class Controller {
                 System.out.println("Authors is null");
             }
 
-            }
+        }
+        private void showImage(){
+            String imageUrl = "https://media.istockphoto.com/id/96379220/es/foto/libro-abierto.jpg?s=612x612&w=0&k=20&c=elAwIgMGhzHAIPDVhSkMVHi51l7CYCe5RnpOv4MvfH4=";
+            Image image = new Image(imageUrl, true);
+            imageV.setImage(image);
+
+
+        }
     }
 
 

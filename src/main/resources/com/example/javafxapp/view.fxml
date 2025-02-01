@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -25,14 +27,19 @@
             <Insets left="250.0" top="10.0" />
          </VBox.margin>
       </Text>
-      <TableView fx:id="authorTable" prefHeight="650.0" prefWidth="900.0">
-        <columns>
-          <TableColumn fx:id="columnId" prefWidth="75.0" text="Id" />
-          <TableColumn fx:id="columnName" prefWidth="160.0" text="Name" />
-            <TableColumn fx:id="columnSurname" prefWidth="203.0" text="Surname" />
-            <TableColumn fx:id="columnBirthdate" prefWidth="201.0" text="Birthdate" />
-            <TableColumn fx:id="columnActive" prefWidth="213.0" text="Active" />
-        </columns>
-      </TableView>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <TableView fx:id="authorTable" prefHeight="494.0" prefWidth="716.0">
+              <columns>
+                <TableColumn fx:id="columnId" prefWidth="75.0" text="Id" />
+                <TableColumn fx:id="columnName" prefWidth="160.0" text="Name" />
+                  <TableColumn fx:id="columnSurname" prefWidth="203.0" text="Surname" />
+                  <TableColumn fx:id="columnBirthdate" prefWidth="201.0" text="Birthdate" />
+                  <TableColumn fx:id="columnActive" prefWidth="213.0" text="Active" />
+              </columns>
+            </TableView>
+            <ImageView fx:id="imageV" fitHeight="422.0" fitWidth="268.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
     </children>
 </VBox>
