@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fotosappsaa.controller.LogController">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxapp.controller.Controller">
     <children>
+      <TableView fx:id="aurthorTable" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="columnId" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="columnName" prefWidth="160.0" text="Name" />
+            <TableColumn fx:id="columnSurname" prefWidth="203.0" text="Surname" />
+            <TableColumn fx:id="columnBirthdate" prefWidth="201.0" text="Birthdate" />
+            <TableColumn fx:id="columnActive" prefWidth="213.0" text="Active" />
+        </columns>
+      </TableView>
         <TextArea fx:id="txArea" prefHeight="672.0" prefWidth="900.0" />
     </children>
 </VBox>

@@ -1,11 +1,14 @@
-package com.example.javafxapp;
+package com.example.javafxapp.controller;
 
 import com.example.javafxapp.domain.Author;
 import com.example.javafxapp.task.TaskManager;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.BufferedReader;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -13,7 +16,18 @@ public class Controller {
 
 
     @FXML
-    private TextArea txArea;
+    private TableView<Author> authorTable;
+    @FXML
+    private TableColumn<Author, Integer> columnId;
+    @FXML
+    private TableColumn<Author, String> columnName;
+    @FXML
+    private TableColumn<Author, String> columnSurname;
+    @FXML
+    private TableColumn<Author, LocalDate> columnBirthDate;
+    @FXML
+    private TableColumn<Author, Boolean> columnActive;
+
 
     private List<Author> authors;
 
@@ -34,7 +48,15 @@ public class Controller {
 
         }
         private void showAuthors(){
-            if (authors == null){
+            if (authors != null){
+                columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+                columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+                columnSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+                columnBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
+                columnActive.setCellValueFactory(new PropertyValueFactory<>("active"));
+
+                authorTable.setItems(FXCollections.observableArrayList(authors));
+            }
 
             }
     }
@@ -43,4 +65,3 @@ public class Controller {
 
 
 
-}
