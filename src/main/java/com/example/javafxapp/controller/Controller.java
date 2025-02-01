@@ -24,7 +24,7 @@ public class Controller {
     @FXML
     private TableColumn<Author, String> columnSurname;
     @FXML
-    private TableColumn<Author, LocalDate> columnBirthDate;
+    private TableColumn<Author, LocalDate> columnBirthdate;
     @FXML
     private TableColumn<Author, Boolean> columnActive;
 
@@ -49,13 +49,18 @@ public class Controller {
         }
         private void showAuthors(){
             if (authors != null){
+
                 columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
                 columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
                 columnSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
-                columnBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
+                columnBirthdate.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
                 columnActive.setCellValueFactory(new PropertyValueFactory<>("active"));
 
                 authorTable.setItems(FXCollections.observableArrayList(authors));
+                authorTable.refresh();
+
+            } else {
+                System.out.println("Authors is null");
             }
 
             }

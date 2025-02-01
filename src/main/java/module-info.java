@@ -6,7 +6,8 @@ module com.example.javafxapp {
     requires jdk.jsobject;
     requires org.json;
 
-
+    opens com.example.javafxapp.controller to javafx.fxml;
     opens com.example.javafxapp to javafx.fxml;
+    opens com.example.javafxapp.domain to javafx.base;
     exports com.example.javafxapp;
 }

@@ -11,6 +11,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,15 +34,23 @@ public class TaskManager extends Task<List<Author>> {
                 JSONArray jsonArray = new JSONArray(response.body());
 
                 for (int i = 0; i < jsonArray.length(); i++) {
+
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                    String birthdateString = jsonObject.getString("birthdate");
+                    OffsetDateTime birthdate = OffsetDateTime.parse(birthdateString);
+                    LocalDate birthdateLocalDate = birthdate.toLocalDate();
+
                     Author author = new Author(
                     jsonObject.getInt("id"),
                     jsonObject.getString("name"),
                     jsonObject.getString("surname"),
-                    LocalDate.parse(jsonObject.getString("birthdate"), DateTimeFormatter.ISO_DATE),
+                    birthdateLocalDate,
                     jsonObject.getBoolean("active"));
 
                     authors.add(author);
+
+                    System.out.println("Respuesta JSON: " + response.body());
                 }
 
 
