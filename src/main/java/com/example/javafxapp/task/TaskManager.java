@@ -50,7 +50,6 @@ public class TaskManager extends Task<List<Author>> {
 
                     authors.add(author);
 
-                    System.out.println("Respuesta JSON: " + response.body());
                 }
 
 
