@@ -42,7 +42,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <ImageView fx:id="imageV" fitHeight="422.0" fitWidth="268.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="buttonFilter" mnemonicParsing="false" onAction="#applyFilter" text="Aplicar filtro">
+                  <Button fx:id="buttonFilter" mnemonicParsing="false" onAction="#applyFilter" text="Apply filter">
                      <VBox.margin>
                         <Insets left="30.0" />
                      </VBox.margin>
