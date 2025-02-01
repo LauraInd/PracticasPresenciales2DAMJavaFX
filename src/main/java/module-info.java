@@ -5,7 +5,7 @@ module com.example.javafxapp {
     requires java.net.http;
     requires jdk.jsobject;
     requires org.json;
-    requires java.desktop;
+    requires javafx.swing;
 
     opens com.example.javafxapp.controller to javafx.fxml;
     opens com.example.javafxapp to javafx.fxml;

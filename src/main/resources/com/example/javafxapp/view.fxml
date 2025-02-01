@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
@@ -38,7 +39,16 @@
                   <TableColumn fx:id="columnActive" prefWidth="213.0" text="Active" />
               </columns>
             </TableView>
-            <ImageView fx:id="imageV" fitHeight="422.0" fitWidth="268.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fx:id="imageV" fitHeight="422.0" fitWidth="268.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="buttonFilter" mnemonicParsing="false" onAction="#applyFilter" text="Aplicar filtro">
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
          </children>
       </HBox>
     </children>

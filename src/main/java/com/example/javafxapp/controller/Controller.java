@@ -1,9 +1,12 @@
 package com.example.javafxapp.controller;
 
 import com.example.javafxapp.domain.Author;
+import com.example.javafxapp.task.TaskFilter;
 import com.example.javafxapp.task.TaskManager;
 import javafx.collections.FXCollections;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -11,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.List;
@@ -33,6 +37,10 @@ public class Controller {
     private TableColumn<Author, Boolean> columnActive;
     @FXML
     private ImageView imageV;
+    @FXML
+    private Button buttonFilter;
+
+    private BufferedImage bufferedImage;
 
 
     private List<Author> authors;
@@ -43,12 +51,13 @@ public class Controller {
 
     @FXML
     private void initialize() {
+        showImage();
         TaskManager taskManager = new TaskManager();
 
         taskManager.setOnSucceeded(event -> {
             authors = taskManager.getValue();
             showAuthors();
-            showImage();
+
         });
         new Thread(taskManager).start();
 
@@ -76,6 +85,21 @@ public class Controller {
             Image image = new Image(imageUrl, true);
             imageV.setImage(image);
 
+        }
+
+        @FXML
+        private void applyFilter() {
+            Image image = imageV.getImage();
+            bufferedImage = SwingFXUtils.fromFXImage(image, null);
+            TaskFilter taskFilter = new TaskFilter(bufferedImage);
+
+
+            taskFilter.setOnSucceeded(event ->{
+                Image image2 = SwingFXUtils.toFXImage(bufferedImage, null);
+            imageV.setImage(image2);
+            });
+
+            new Thread(taskFilter).start();
 
         }
     }
